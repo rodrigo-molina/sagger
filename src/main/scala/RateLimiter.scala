@@ -34,7 +34,7 @@ object RateLimiter {
     semaphore <- Semaphore[F](tokensPerPeriod)
   } yield new RateLimiter[F] {
 
-    def availableTokens: F[Long] = semaphore.available // acquires the permit
+    def availableTokens: F[Long] = semaphore.available
 
     def getRatedToken: F[Unit] =
       semaphore.acquire
