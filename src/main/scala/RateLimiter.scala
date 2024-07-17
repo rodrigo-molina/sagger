@@ -19,7 +19,7 @@ sealed abstract class RateLimiter[F[_]: Monad] {
   /** Returns the number of tokens currently available. Always non-negative. */
   def availableTokens: F[Long]
 
-  /** Runs `f` if when a token is acquired. */
+  /** Runs `f` after a token is acquired. */
   def runWhenTokenAvailable[A](f: F[A]): F[A] = getRatedToken >> f
 
 }
